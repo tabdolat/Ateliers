@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for progress_file in $(atman farouk mouhcine yassine)
+do
+    echo "$file"
+    cat $file/progress
+done

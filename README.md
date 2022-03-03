@@ -3,6 +3,6 @@ Password for 'https://tabdolat@github.com':
 
 
 
-if mdp is not valide go check go to 
+Go check
 
 settings --> devolopper settings --> personal token --> generate new token

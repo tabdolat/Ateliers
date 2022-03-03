@@ -1,5 +1,5 @@
 Username for 'https://github.com': tabdolat
-Password for 'https://tabdolat@github.com': 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
+Password for 'https://tabdolat@github.com':
 
 
 

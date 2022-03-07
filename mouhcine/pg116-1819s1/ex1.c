@@ -1,7 +1,7 @@
 /********* DEBUT DU CODE A NE PAS MODIFIER **********************/
 #include <stdlib.h>
 #include "node.h"
-
+#include <assert.h>
 /* As a reminder, the following functions are provided in "node.h" :
 
    struct node_t {
@@ -25,6 +25,7 @@
  * POSTCOND n has been initialized with data x and empty child nodes
  */
 void node__initialize(struct node_t * n, int x){
+  assert( !node__is_empty(n) );
   n->_data = x;
   n->_children[0] = node__empty();
   n->_children[1] = node__empty();
@@ -39,6 +40,7 @@ void node__initialize(struct node_t * n, int x){
  * RETURN the previous child of n1 at direction d
  **/
 struct node_t * node__link(struct node_t * n1, struct node_t * n2, unsigned d){
+  assert( !node__is_empty(n1) && d < 2 );
   struct node_t * ret = n1->_children[d];
   n1->_children[d] = n2;
   return ret;
@@ -52,6 +54,7 @@ struct node_t * node__link(struct node_t * n1, struct node_t * n2, unsigned d){
  * RETURN the previous child of n at direction d
  **/
 struct node_t * node__unlink(struct node_t * n, unsigned d){
+  assert( !node__is_empty(n) && d < 2 );
   struct node_t * ret = n->_children[d];
   n->_children[d] = node__empty();
   return ret;

@@ -1,6 +1,6 @@
 PROJ = pg116-1819s1
 
-BIN = node
+BIN = node tree
 
 CC ?= cc
 CPPFLAGS = -I ${PROJ}
@@ -27,5 +27,17 @@ ex1.o: ${PROJ}/ex1.c ${PROJ}/node.h
 node.o: ${PROJ}/node.c
 	${CC} ${CPPFLAGS} ${CFLAGS} ${PROJ}/node.c -c
 
-node: ex1.o node.o tests.c
-	${CC} ${CPPFLAGS} ${CFLAGS} ex1.o node.o tests.c -o node
+node: ex1.o node.o node_tests.c
+	${CC} ${CPPFLAGS} ${CFLAGS} ex1.o node.o node_tests.c -o node
+
+
+
+
+ex2.o: ${PROJ}/ex2.c ${PROJ}/node.h
+	${CC} ${CPPFLAGS} ${CFLAGS}  ${PROJ}/ex2.c -c
+
+ntree.o: ${PROJ}/ntree.c
+	${CC} ${CPPFLAGS} ${CFLAGS} ${PROJ}/ntree.c -c 
+
+tree: ex1.o ex2.o node.o tree_tests.c
+	${CC} ${CPPFLAGS} ${CFLAGS} ex1.o ex2.o node.o tree_tests.c -o tree

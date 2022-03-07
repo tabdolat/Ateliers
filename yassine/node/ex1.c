@@ -26,7 +26,6 @@
  */
 void node__initialize(struct node_t * n, int x)
 {
-    assert( !node__is_empty(n) );
     n->_data = x;
     n->_children[0] = node__empty();
     n->_children[1] = node__empty();
@@ -43,7 +42,6 @@ void node__initialize(struct node_t * n, int x)
 struct node_t * node__link(struct node_t * n1, struct node_t * n2, unsigned d)
 {
     assert( d < 2 );
-    assert( !node__is_empty(n1) );
     struct node_t *tmp_child = n1->_children[d];
     n1->_children[d] = n2;
     return tmp_child;
@@ -59,7 +57,6 @@ struct node_t * node__link(struct node_t * n1, struct node_t * n2, unsigned d)
 struct node_t * node__unlink(struct node_t * n, unsigned d)
 {
     assert( d < 2 );
-    assert( !node__is_empty(n) );
     struct node_t *tmp_child = n->_children[d];
     n->_children[d] = node__empty();
     return tmp_child;    

@@ -54,6 +54,7 @@ void ntree__free(struct ntree_t * t)
             tree_child1->_root = tmp_child1;
             ntree__free(tree_child0);
             ntree__free(tree_child1); 
+            free(t);
         }
     }
 }

@@ -29,7 +29,9 @@
  * RETURN the node pointed by children
  */
 struct node_t * children__current(struct children_t const * children)
-;
+{
+  return children->_current;
+}
 
 /**
  * PARAM children : a sequence of child nodes
@@ -38,7 +40,9 @@ struct node_t * children__current(struct children_t const * children)
  * otherwise
  */
 int children__is_empty(struct children_t const * children)
-;
+{
+  return node__is_empty(children->_current);
+}
 
 /**
  * PARAM children : a sequence of child nodes
@@ -47,12 +51,25 @@ int children__is_empty(struct children_t const * children)
  * in the sequence
  */
 void children__next(struct children_t * children)
-;
-
+{
+  assert( children != NULL && !children__is_empty(children) );
+  if( node__is_empty(children->_current->_children[NEXT_SIBLING]) )
+  {
+    children->_current->_children[NEXT_SIBLING] = NULL;
+  }
+  children->_current = children->_current->_children[NEXT_SIBLING];  
+}
 /**
  * PARAM n : a node
  * PRECOND n is not NULL, and n is not empty
  * RETURN the sequence of child nodes of n
  */
 struct children_t ntree__children(struct node_t * n)
-;
+{
+  struct children_t child;
+  if ( !node__is_empty(n->_children[FIRST_CHILD]) )
+  {
+    child._current = n->_children[FIRST_CHILD];
+  } 
+  return child;
+}

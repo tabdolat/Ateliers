@@ -123,7 +123,71 @@ void test_ntree__free(void)
     printf("\tOK\n");
 }
 
+/* Exercice 03 */
+void test_children__next(void)
+{
+    printf("%s", __func__);
 
+    struct node_t *root = malloc(sizeof(struct node_t));
+    struct node_t *n2 = malloc(sizeof(struct node_t));
+    struct node_t *n3 = malloc(sizeof(struct node_t));
+    struct node_t *n4 = malloc(sizeof(struct node_t));
+
+    node__initialize(root, 1);
+    node__initialize(n2, 11);
+    node__initialize(n3, 22);
+    node__initialize(n4, 33);
+
+    node__link(root, n2, 0);
+    node__link(n2, n3, 1);
+    node__link(n3, n4, 1);
+
+    struct children_t *child = malloc(sizeof(*child));
+    child->_current = n2;
+
+    children__next(child);
+
+    assert(child->_current == n3);
+
+    free(root);
+    free(n2);
+    free(n3);
+    free(n4);
+    free(child);
+
+    printf("\tOK\n");
+}
+
+void test_ntree__children(void)
+{
+    printf("%s", __func__);
+
+    struct node_t *root = malloc(sizeof(struct node_t));
+    struct node_t *n2 = malloc(sizeof(struct node_t));
+    struct node_t *n3 = malloc(sizeof(struct node_t));
+    struct node_t *n4 = malloc(sizeof(struct node_t));
+
+    node__initialize(root, 1);
+    node__initialize(n2, 11);
+    node__initialize(n3, 22);
+    node__initialize(n4, 33);
+
+    node__link(root, n2, 0);
+    node__link(n2, n3, 1);
+    node__link(n3, n4, 1);
+
+    struct children_t child = ntree__children(root);
+
+    assert(child._current == n2);
+    assert(child._current->_children[NEXT_SIBLING] == n3);
+    
+    free(root);
+    free(n2);
+    free(n3);
+    free(n4);
+
+    printf("\tOK\n");
+}
 
 int main()
 {
@@ -135,7 +199,9 @@ int main()
 
     test_ntree__free();
 
+    test_children__next();
 
+    test_ntree__children();
 
     return 0;
 }

@@ -53,12 +53,16 @@ int children__is_empty(struct children_t const * children)
 void children__next(struct children_t * children)
 {
   assert( children != NULL && !children__is_empty(children) );
-  if( node__is_empty(children->_current->_children[NEXT_SIBLING]) )
-  {
-    children->_current->_children[NEXT_SIBLING] = NULL;
-  }
   children->_current = children->_current->_children[NEXT_SIBLING];  
 }
+
+/*
+  if( node__is_empty(children->_current->_children[NEXT_SIBLING]) )
+  {
+    children->_current = NULL; ->_children[NEXT_SIBLING]*/
+  
+  
+
 /**
  * PARAM n : a node
  * PRECOND n is not NULL, and n is not empty

@@ -4,7 +4,7 @@ BIN = node_test
 
 CC ?= cc
 CPPFLAGS = -I ${NOD_DIR}
-CFLAGS = -Wall -Wextra -std=c99 -g
+CFLAGS = -Wall -Wextra -std=c99 -g -O0
 LDFLAGS =
 
 .PHONY: all test build clean

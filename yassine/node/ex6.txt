@@ -1,0 +1,9 @@
+Atman answer (Lah ihafdo)
+
+//Question 1:
+Le prototype de la fonction ntree_find est:
+            struct node_t *ntree_find(const struct ntree_t *t, (int)(*predicat)(struct node_t *));
+où prédicat est un pointeur de fonction pointant vers un booléen qui décide si un noeud de t vérifie ou non le prédicat.
+
+//Question 2:
+
